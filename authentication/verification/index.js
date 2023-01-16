@@ -46,34 +46,7 @@ const Verification = ()=> {
     const [visible, setVisible] = React.useState(false);
     
     return(
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ModalPoup visible={visible}>
-          <View style={{alignItems: 'center'}}>
-            <View style={styles.header}>
-              <TouchableOpacity onPress={() => setVisible(false)}>
-                <Image
-                  source={close}
-                  style={{height: 30, width: 30}}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={{alignItems: 'center'}}>
-            <Image
-              source={success}
-              style={{height: 150, width: 150, marginVertical: 10, marginBottom: 70}}
-            />
-          </View>
-  
-          <Text style={{marginVertical: 30, fontSize: 20, textAlign: 'center', marginTop: -80}}>
-            Successful!
-          </Text>
-          <TouchableOpacity style={styles.mButton} onPress = {() =>{
-            navigation.navigate('Login');
-          }}>
-            <Text style={styles.mTxt}>LOG IN</Text>
-          </TouchableOpacity>
-        </ModalPoup>
+        <ImageBackground source={verif} style = {styles.container}>
         <View>
         <Text style={styles.verText}>Verification</Text>
         <Text style={styles.subText}>Enter 6 digit code from your email address</Text>
@@ -107,21 +80,29 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#EFECE1',
-      alignItems: 'flex-start',
-      justifyContent: 'flex-start',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+
+    container2: {
+      backgroundColor: 'white',
+      height: 450,
+      width: 320,
+      marginTop: 100,
+      alignItems: 'center',
+      borderRadius: 20
     },
 
     verText:{
+        top: 15,
         fontStyle: "normal",
         fontSize: 35,
         textAlign:'center',
         height: 60,
         padding:5,
-        margin:5,
         fontWeight: "bold",
         fontFamily: "sans-serif-condensed",
-        top: 220,
-        left: 35
+        marginBottom: 20
     },
 
     subText: {
@@ -129,17 +110,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign:'center',
         fontFamily: "sans-serif-condensed",
-        top: 210,
-        left: 30
+        marginBottom: 20
     },
 
     codeInput1: {
         borderWidth: 2,
         height: 45,
         width: 45,
-        padding:10,
-        left: 30,
-        marginTop: 230,
+        left: -125,
         textAlign:'center',
         borderRadius: 10,
         backgroundColor: '#EBE8CD',
@@ -153,9 +131,8 @@ const styles = StyleSheet.create({
         height: 45,
         width: 45,
         padding:10,
-        left: 80,
+        left: -75,
         bottom: 45,
-        textAlign:'center',
         borderRadius: 10,
         backgroundColor: '#EBE8CD',
         marginBottom:0,
@@ -168,13 +145,12 @@ const styles = StyleSheet.create({
         height: 45,
         width: 45,
         padding:10,
-        left: 130,
+        left:-25,
         marginTop: -90,
         textAlign:'center',
         borderRadius: 10,
         backgroundColor: '#EBE8CD',
         marginBottom:0,
-        justifyContent: 'center',
         fontFamily: "sans-serif-condensed"
     },
 
@@ -183,7 +159,7 @@ const styles = StyleSheet.create({
         height: 45,
         width: 45,
         padding:10,
-        left: 180,
+        left: 25,
         marginTop: -45,
         textAlign:'center',
         borderRadius: 10,
@@ -198,7 +174,7 @@ const styles = StyleSheet.create({
         height: 45,
         width: 45,
         padding:10,
-        left: 230,
+        left: 75,
         marginTop: -45,
         textAlign:'center',
         borderRadius: 10,
@@ -213,7 +189,7 @@ const styles = StyleSheet.create({
         height: 45,
         width: 45,
         padding:10,
-        left: 280,
+        left: 125,
         marginTop: -45,
         textAlign:'center',
         borderRadius: 10,
@@ -224,7 +200,7 @@ const styles = StyleSheet.create({
     },
 
     resend: {
-        left: 180,
+        left: 100,
         width:200,
         marginTop: 10,
         textAlign: "center",
@@ -232,14 +208,13 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textDecorationLine: 'underline',
         fontFamily: "sans-serif-condensed",
-        fontSize: 15
+        fontSize: 15,
     },
     verifButton: {
         width: 200,
         backgroundColor: '#DCB900',
         height: 50,
         width: 250,
-        left: 55,
         borderRadius: 20,
         textAlign:'center',
         marginTop: 20
@@ -260,7 +235,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#DCB900',
         height: 50,
         width: 250,
-        left: 55,
         borderRadius: 20,
         textAlign:'center',
         marginTop: 15
@@ -308,6 +282,6 @@ const styles = StyleSheet.create({
 
     
 }
-);
+)
 
 export default Verification;

@@ -28,20 +28,16 @@ export default function GetDone(){
                 GET STARTED
             </Text>
         </TouchableOpacity>
-
-   
         </View>
         </ImageBackground>
-     
     )
-
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#EFECE1',
-      alignItems: 'flex-start',
+      alignItems: 'center',
       justifyContent: 'flex-start'
     },
 

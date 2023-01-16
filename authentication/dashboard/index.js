@@ -165,9 +165,6 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginLeft: 10,
         color: "red"
-
-        
-
     },
     price:{
         fontStyle: "normal",
