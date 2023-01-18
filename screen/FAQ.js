@@ -56,13 +56,13 @@ const FAQ = () => {
           navigation.navigate('DrawBar')
         }}>
           <Text style={styles.btext}>BACK</Text>
+          </TouchableOpacity>
           <View>
         <Text style={styles.electext}>
           electriCAL
         </Text>
           <Image source={suga} style={styles.sugaimg}/>
         </View>
-        </TouchableOpacity>
         <View>
         <Text style={styles.textAbout}>Frequently Asked Questions</Text>
         </View>

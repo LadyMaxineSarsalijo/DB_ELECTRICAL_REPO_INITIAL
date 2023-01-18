@@ -18,12 +18,13 @@ import Verification from './authentication/verification';
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="GetDone" screenOptions={{headerShown:false}}>
         <Stack.Screen name="GetDone" component={GetDone} />
-        <Stack.Screen name="Registration" component={Registration} options={{title:"Register"}} />
+        <Stack.Screen name="Registration"component={Registration} options={{title:"Register"}} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Forgotpassword" component={Forgotpassword} />

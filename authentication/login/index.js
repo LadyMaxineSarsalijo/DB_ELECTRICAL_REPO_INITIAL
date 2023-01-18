@@ -1,9 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Pressable, Button,Text, TextInput, View, TouchableOpacity,Image, ImageBackground} from "react-native";
 import { StyleSheet } from "react-native";
 import { useTogglePasswordVisibility } from "../useTogglePasswordVisibility";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import axios from "axios";
 import Dashboard from "../dashboard";
 
 export default function Login (){
@@ -15,8 +16,35 @@ export default function Login (){
     const { passwordVisibility, rightIcon, handlePasswordVisibility } = useTogglePasswordVisibility();
     const [checkValidEmail, setCheckValidEmail] = useState(false);
 
+    const [isSubmit, setIsSubmit] = useState (false);
 
-    const handleCheckEmail = text => {
+    useEffect(()=> {
+      const authenticate = async () => {
+          axios.post (
+              "http://192.168.1.10/db_electrical/Login.php",
+              JSON.stringify({
+                  email: email,
+                  password: password
+              })
+          )
+          .then ((response) => {
+              console.log(response.data);
+              setIsSubmit(false);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      };
+     if (isSubmit) authenticate(navigation.navigate("DrawBar"));
+
+  }, [isSubmit])
+
+  const firstnameHandler = (text) => {
+      setFirstName(text);
+  };
+
+
+   /* const handleCheckEmail = text => {
         let re = /\S+@\S+\.\S+/;
         let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     
@@ -62,8 +90,8 @@ export default function Login (){
     
         return null;
       };
-    
-      const handleLogin = () => {
+    */
+      /*const handleLogin = () => {
         const checkPassowrd = checkPasswordValidity(password);
         if (!checkPassowrd) {
           user_login({
@@ -83,25 +111,18 @@ export default function Login (){
           alert(checkPassowrd);
         }
       };
-
+*/
     return (
         <ImageBackground source={require('./309801225_1271235570111784_2236775530307066990_n.png')} resizeMode = "cover" style = {styles.bgimage}>
         <View  style ={styles.container}>
             <Image source={require('./electriCAL__2_-removebg-preview.png')}style = {styles.image}/>
             <Text>{warning}</Text>
-            <TextInput style={styles.txtinput} placeholder="Email Address" value={email} onChangeText={text => handleCheckEmail(text)}/>
-            {checkValidEmail ? (
-            <Text style={styles.textFailed}>Invalid Email!</Text>
-             ) : (
-            <Text style={styles.textFailed}> </Text>
-            )}
-            <TextInput style={styles.txtinput} placeholder="Password"  value={password} onChangeText={setPassword} secureTextEntry={passwordVisibility}/>
+            <TextInput style={styles.txtinput} placeholder="Email Address" value={email} onChangeText={email => setEmail(email)}/>
+            <TextInput style={styles.txtinput} placeholder="Password"  value={password} onChangeText={password=> setPassword(password)} secureTextEntry={passwordVisibility}/>
             <Pressable style={styles.eye} onPress={handlePasswordVisibility}>
                 <MaterialCommunityIcons name={rightIcon} size={22} color="#232323" />
             </Pressable>
-            <TouchableOpacity style={styles.loginButton} onPress= {() => {
-              navigation.navigate('DrawBar');
-            }} >
+            <TouchableOpacity style={styles.loginButton} onPress ={() => setIsSubmit(true)} >
                 <Text style={styles.text} >LOG IN</Text>    
             </TouchableOpacity>
             <TouchableOpacity onPress={() =>{
@@ -155,14 +176,14 @@ const styles = StyleSheet.create({
     },
 
     fg2: {
-        margin: 5,
+       margin: 5,
         width:200,
         back: '#463a0b',
         textAlign: "center",
         color: "#3F52FD",
         fontWeight: "800",
         textDecorationLine: 'underline',
-        fontFamily: "sans-serif-condensed"
+        fontFamily: "sans-serif-condensed" 
     },
 
     loginButton: {

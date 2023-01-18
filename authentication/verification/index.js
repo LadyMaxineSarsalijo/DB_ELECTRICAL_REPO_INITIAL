@@ -68,8 +68,7 @@ const Verification = ()=> {
             <Text style={styles.verifTxt}>BACK</Text>
         </TouchableOpacity>
         </View>
-
-      </View>
+      </ImageBackground>
         
      
     );
